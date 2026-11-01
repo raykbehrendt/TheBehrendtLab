@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Datenschutzerklärung — The Behrendt Lab</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<style>
+  :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>The Behrendt Lab</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="preload" href="fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* Layout: single column, 68ch measure, hairline-ruled bands; the two research
+   arms are the only two-column moment and each carries its own accent rail. */
+:root{
+  --bg:#F6F8F7; --surface:#FFFFFF; --sunk:#EDF1F0;
+  --fg:#141D1C; --muted:#5A6A68; --line:#DBE3E1;
+  --arm-a:#0E6A62;          /* retroelement arm */
+  --arm-b:#9A6418;          /* ZBP1 arm */
+  --ph:#8A7A55;             /* placeholder text */
+  --ph-bg:rgba(154,100,24,.10);
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --gut:max(20px,env(safe-area-inset-left,0px));
+  --gut-r:max(20px,env(safe-area-inset-right,0px));
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1413; --surface:#141C1B; --sunk:#111817;
+    --fg:#E6EDEB; --muted:#9BABA8; --line:#243130;
+    --arm-a:#56BDB1; --arm-b:#D9A95E;
+    --ph:#C2AE84; --ph-bg:rgba(217,169,94,.12);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1413; --surface:#141C1B; --sunk:#111817;
+  --fg:#E6EDEB; --muted:#9BABA8; --line:#243130;
+  --arm-a:#56BDB1; --arm-b:#D9A95E;
+  --ph:#C2AE84; --ph-bg:rgba(217,169,94,.12);
+  color-scheme:dark;
+}
+
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:var(--body); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+*,*::before,*::after{box-sizing:border-box}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--arm-a);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:1040px;margin-inline:auto;padding-left:var(--gut);padding-right:var(--gut-r)}
+
+/* ---- masthead ---- */
+.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;background:var(--bg);border-bottom:1px solid var(--line)}
+.site .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;padding-block:14px}
+.brand{display:flex;align-items:center;gap:11px;margin-right:auto;min-width:0}
+.brand svg{width:30px;height:30px;flex:none}
+.mark{font-family:var(--display);font-size:1.25rem;letter-spacing:.01em;font-weight:500}
+.mark span{color:var(--muted);font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;display:block;margin-top:2px}
+.site nav{display:flex;flex-wrap:wrap;gap:4px 20px;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+.site nav a{color:var(--muted);text-decoration:none;padding-block:2px}
+.site nav a:hover{color:var(--fg)}
+
+/* ---- hero ---- */
+.hero .wrap{padding-block:clamp(44px,8vw,86px) clamp(36px,6vw,64px)}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,5.4vw,3.5rem);line-height:1.1;margin-block:18px 22px;max-width:19ch}
+.hero h1 em{font-style:italic;color:var(--arm-a)}
+.lede{max-width:62ch;font-size:clamp(1rem,1.6vw,1.12rem);color:var(--muted)}
+.lede strong{color:var(--fg);font-weight:500}
+.lede a{color:var(--fg);font-weight:500;text-decoration:none;border-bottom:1.5px solid var(--arm-b)}
+.lede a.r{border-bottom-color:var(--arm-a)}
+.lede a.t{border-bottom-color:var(--muted)}
+.lede a:hover{background:var(--sunk)}
+.arm[id],.cross[id]{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 80px)}
+
+/* ---- section furniture ---- */
+section{border-top:1px solid var(--line)}
+section > .wrap{padding-block:clamp(40px,6vw,72px)}
+.sec-head{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin-bottom:30px}
+.sec-head h2{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,3vw,2rem)}
+.sec-head .note{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* ---- research arms ---- */
+.arms{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.arm{min-width:0;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--rail);padding:26px 24px 28px;display:flex;flex-direction:column;gap:14px}
+.arm.a{--rail:var(--arm-a)}
+.arm.b{--rail:var(--arm-b)}
+.arm .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rail)}
+.arm h3{font-family:var(--display);font-weight:500;font-size:1.45rem;line-height:1.25}
+.arm p{color:var(--muted);max-width:46ch}
+.arm svg{width:100%;height:auto;max-width:100%;margin-top:4px}
+.arm svg text{font-family:var(--mono);font-size:8px}
+.pi{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline;padding:20px 22px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--arm-a);margin-bottom:30px;min-width:0}
+.pi .name{font-weight:500}
+.pi .role{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:auto}
+.arm .keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.arm .keys li{list-style:none;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:var(--sunk)}
+.arm .pubs{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.arm .pubs li{font-size:.86rem;line-height:1.45;min-width:0}
+.arm .pubs .t{display:block;color:var(--fg)}
+.arm .pubs .m{font-family:var(--mono);font-size:.71rem;color:var(--muted)}
+.arm .pubs a{color:var(--rail);text-decoration:none;border-bottom:1px solid var(--line)}
+.pubs-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:16px}
+.feed{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);padding:24px}
+.feed p{color:var(--muted);max-width:52ch;min-width:0}
+.feed .btn{font-family:var(--mono);font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--fg);padding:11px 18px;text-decoration:none;white-space:nowrap}
+.feed .btn:hover{background:var(--fg);color:var(--bg)}
+.shared{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);max-width:68ch;font-size:.95rem}
+.shared b{color:var(--fg);font-weight:500}
+
+/* cross-cutting translational angle — spans both arms */
+.cross{--rail:var(--fg);margin-top:24px;background:var(--surface);border:1px solid var(--line);
+  border-top:3px solid transparent;
+  border-image:linear-gradient(90deg,var(--arm-b) 0 50%,var(--arm-a) 50% 100%) 1;
+  padding:26px 24px 28px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px 34px}
+.cross .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cross h3{font-family:var(--display);font-weight:500;font-size:1.45rem;line-height:1.25;margin-block:8px 12px}
+.cross p{color:var(--muted);max-width:56ch}
+.cross .col{min-width:0}
+.cross .pubs-label{margin-top:0}
+.cross .pubs{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.cross .pubs li{font-size:.86rem;line-height:1.45;min-width:0}
+.cross .pubs .t{display:block;color:var(--fg)}
+.cross .pubs .m{font-family:var(--mono);font-size:.71rem;color:var(--muted)}
+.cross .pubs a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line)}
+.cross .steps{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding:0;list-style:none}
+.cross .steps li{font-family:var(--mono);font-size:.7rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:var(--sunk)}
+@media (max-width:680px){.cross{grid-template-columns:1fr}}
+
+/* ---- people ---- */
+.roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px 36px}
+.roster section{border:0}
+.group-title{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding-bottom:8px;border-bottom:2px solid var(--rail);color:var(--rail)}
+.g-a{--rail:var(--arm-a)} .g-b{--rail:var(--arm-b)} .g-c{--rail:var(--line)}
+.g-c .group-title{color:var(--muted)}
+.roster ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.roster li{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline;padding-block:11px;border-bottom:1px solid var(--line);min-width:0}
+.roster .name{font-weight:500}
+.roster .role{font-size:.84rem;color:var(--muted);margin-left:auto;text-align:right}
+
+/* ---- history ---- */
+.timeline{list-style:none;margin:0;padding:0;max-width:72ch}
+.timeline li{display:grid;grid-template-columns:5.5rem 1fr;gap:4px 22px;padding-block:14px;border-bottom:1px solid var(--line);min-width:0}
+.timeline .yr{font-family:var(--mono);font-size:.84rem;color:var(--arm-a);font-variant-numeric:tabular-nums;padding-top:3px}
+.timeline .ev{min-width:0;color:var(--fg)}
+.timeline .ev small{display:block;color:var(--muted);font-size:.88rem;margin-top:2px}
+@media (max-width:460px){.timeline li{grid-template-columns:1fr}}
+
+/* ---- funding ---- */
+.fund-group{max-width:78ch}
+.fund-group + .fund-group{margin-top:34px}
+.fund-group > h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.funding{list-style:none;margin:0;padding:0;max-width:78ch}
+.funding li{display:grid;grid-template-columns:1fr auto;gap:2px 20px;padding-block:14px;border-bottom:1px solid var(--line);min-width:0;align-items:baseline}
+.funding .funder{font-weight:500}
+.funding .scheme{grid-column:1;color:var(--muted);font-size:.9rem}
+.funding .period{font-family:var(--mono);font-size:.8rem;color:var(--muted);grid-row:1;grid-column:2;font-variant-numeric:tabular-nums}
+@media (max-width:460px){.funding li{grid-template-columns:1fr}.funding .period{grid-row:auto;grid-column:1}}
+
+/* ---- contact ---- */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+.contact-grid div{min-width:0}
+.contact-grid h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:400}
+.contact-grid p{line-height:1.7}
+.addr{font-style:normal}
+.copy{font-family:var(--mono);font-size:.82rem;word-break:break-all}
+
+footer{border-top:1px solid var(--line);background:var(--sunk)}
+footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:.82rem;color:var(--muted)}
+footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* ---- placeholders ---- */
+.ph{color:var(--ph);background:var(--ph-bg);border-bottom:1px dotted currentColor;padding:0 .18em;border-radius:2px}
+.ph-note{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--ph);background:var(--ph-bg);border:1px dashed currentColor;border-radius:3px;padding:6px 10px;display:inline-block;margin-top:18px}
+
+@media (prefers-reduced-motion:no-preference){
+  .site nav a,footer a{transition:color .15s ease}
+}
+</style>
+
+
+<style>
+  .legal .wrap{padding-block:clamp(36px,6vw,64px)}
+  .legal h1{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.15;margin-bottom:10px}
+  .legal .updated{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .legal h2{font-family:var(--display);font-weight:500;font-size:1.2rem;margin-top:34px;margin-bottom:10px}
+  .legal h3{font-size:.95rem;font-weight:600;margin-top:20px;margin-bottom:4px}
+  .legal p,.legal li{max-width:68ch;color:var(--fg)}
+  .legal p{margin-bottom:12px}
+  .legal ul{padding-left:20px;margin-bottom:12px}
+  .legal li{margin-bottom:5px}
+  .legal address{font-style:normal;margin-bottom:12px;line-height:1.7}
+  .legal a{color:var(--arm-a)}
+  .back{display:inline-block;margin-top:40px;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+  .legal .warn{border-left:3px solid var(--ph);background:var(--ph-bg);padding:14px 16px;margin-block:22px;color:var(--ph);font-size:.9rem;max-width:68ch}
+  .legal .warn b{color:var(--ph)}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 64 64" role="img" aria-label="The Behrendt Lab mark: a row of uneven bars with one hit rising above them">
+        <path d="M5 50 H59" stroke="var(--line)" stroke-width="2.4" fill="none"></path>
+        <g fill="var(--arm-a)" opacity=".4">
+          <rect x="6" y="41" width="4" height="9"></rect>
+          <rect x="13" y="36" width="4" height="14"></rect>
+          <rect x="20" y="43" width="4" height="7"></rect>
+          <rect x="27" y="38" width="4" height="12"></rect>
+          <rect x="41" y="34" width="4" height="16"></rect>
+          <rect x="48" y="42" width="4" height="8"></rect>
+          <rect x="55" y="37" width="4" height="13"></rect>
+        </g>
+        <rect x="34" y="13" width="4" height="37" fill="var(--arm-a)"></rect>
+        <circle cx="36" cy="11" r="3.8" fill="var(--arm-a)"></circle>
+      </svg>
+      <div class="mark">The Behrendt Lab<span>Nucleic Acid Immunity &amp; Genome Defense · Bonn</span></div>
+    </div>
+    <nav aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#people">People</a>
+      <a href="#history">History</a>
+      <a href="#funding">Funding</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="legal">
+  <div class="wrap">
+
+    <h1>Datenschutzerklärung</h1>
+    <p class="updated">Stand: <span class="ph">… 2026</span></p>
+
+    <div class="warn"><b>Vor Veröffentlichung prüfen lassen.</b> Dieser Entwurf
+    beschreibt die Verarbeitung, die diese Seite tatsächlich auslöst, ist aber
+    keine Rechtsberatung. Bitte durch die/den Datenschutzbeauftragte:n des UKB
+    freigeben lassen und die markierten Angaben ergänzen.</div>
+
+    <h2>Verantwortlicher</h2>
+    <address>
+      Universitätsklinikum Bonn<br>
+      Prof. Dr. rer. nat. habil. Rayk Behrendt<br>
+      Venusberg-Campus 1, Gebäude 12<br>
+      53127 Bonn<br>
+      behrendt@uni-bonn.de
+    </address>
+    <p>Datenschutzbeauftragte:r des UKB:
+    <span class="ph">Name, Anschrift, E-Mail</span></p>
+
+    <h2>Was diese Seite verarbeitet</h2>
+    <p>Diese Website ist eine statische Seite. Sie setzt <strong>keine
+    Cookies</strong>, verwendet <strong>keine Analyse- oder Tracking-Dienste</strong>,
+    bindet <strong>keine Inhalte Dritter</strong> ein und bietet keine Formulare
+    an. Schriftarten und Grafiken werden ausschließlich vom eigenen Server
+    ausgeliefert; es werden keine Verbindungen zu Google Fonts oder vergleichbaren
+    Diensten aufgebaut.</p>
+
+    <h2>Hosting und Server-Logfiles</h2>
+    <p>Die Seite wird über GitHub Pages bereitgestellt, einen Dienst der GitHub,
+    Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.</p>
+    <p>Beim Aufruf der Seite verarbeitet GitHub technisch notwendige
+    Verbindungsdaten, insbesondere die IP-Adresse des aufrufenden Geräts, Datum
+    und Uhrzeit des Zugriffs, die aufgerufene Datei, den Browsertyp und das
+    Betriebssystem. Diese Verarbeitung ist für die Auslieferung der Seite
+    technisch erforderlich. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; das
+    berechtigte Interesse liegt in der sicheren und zuverlässigen Bereitstellung
+    des Internetangebots.</p>
+    <p>Eine Übermittlung in die USA findet statt. GitHub ist unter dem
+    EU-US Data Privacy Framework zertifiziert; ergänzend bestehen
+    Standardvertragsklauseln. Näheres in der Datenschutzerklärung von GitHub:
+    <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub General Privacy Statement</a>.</p>
+    <p>Wir selbst haben keinen Zugriff auf diese Logfiles und erstellen daraus
+    keine Nutzerprofile.</p>
+
+    <h2>Externe Links</h2>
+    <p>Die Publikationsangaben verlinken auf PubMed (National Library of
+    Medicine, USA) sowie auf Zeitschriftenverlage. Mit dem Anklicken verlassen
+    Sie diese Website; für die Datenverarbeitung auf den Zielseiten ist der
+    jeweilige Anbieter verantwortlich.</p>
+
+    <h2>Kontaktaufnahme per E-Mail</h2>
+    <p>Wenn Sie uns per E-Mail schreiben, verarbeiten wir Ihre Angaben
+    ausschließlich zur Bearbeitung Ihres Anliegens, etwa einer Bewerbung oder
+    einer wissenschaftlichen Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b
+    bzw. lit. f DSGVO. Die Daten werden gelöscht, sobald sie für den Zweck nicht
+    mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten
+    entgegenstehen.</p>
+
+    <h2>Ihre Rechte</h2>
+    <p>Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung
+    (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung
+    (Art. 18 DSGVO) und Datenübertragbarkeit (Art. 20 DSGVO) sowie ein
+    Widerspruchsrecht nach Art. 21 DSGVO.</p>
+    <p>Ferner steht Ihnen ein Beschwerderecht bei einer Aufsichtsbehörde zu,
+    etwa bei der Landesbeauftragten für Datenschutz und Informationsfreiheit
+    Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213 Düsseldorf.</p>
+
+    <a class="back" href="index.html">← Zur Startseite</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>The Behrendt Lab · University Hospital Bonn</span>
+    <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="The Behrendt Lab">
+  <title>The Behrendt Lab</title>
+  <path d="M4 50 H60" stroke="#DBE3E1" stroke-width="5" fill="none"/>
+  <g fill="#0E6A62" opacity="0.45">
+    <rect x="6" y="38" width="7" height="12"/>
+    <rect x="17" y="33" width="7" height="17"/>
+    <rect x="42" y="31" width="7" height="19"/>
+    <rect x="53" y="37" width="7" height="13"/>
+  </g>
+  <rect x="29" y="12" width="8" height="38" fill="#0E6A62"/>
+</svg>

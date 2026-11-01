@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The Behrendt Lab, Nucleic Acid Immunity &amp; Genome Defense, University Hospital Bonn: type I interferon-driven inflammation and the fundamental biology of retroelement defense.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon-180.png">
+
+<style>
+  :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>The Behrendt Lab</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="preload" href="fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* Layout: single column, 68ch measure, hairline-ruled bands; the two research
+   arms are the only two-column moment and each carries its own accent rail. */
+:root{
+  --bg:#F6F8F7; --surface:#FFFFFF; --sunk:#EDF1F0;
+  --fg:#141D1C; --muted:#5A6A68; --line:#DBE3E1;
+  --arm-a:#0E6A62;          /* retroelement arm */
+  --arm-b:#9A6418;          /* ZBP1 arm */
+  --ph:#8A7A55;             /* placeholder text */
+  --ph-bg:rgba(154,100,24,.10);
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --gut:max(20px,env(safe-area-inset-left,0px));
+  --gut-r:max(20px,env(safe-area-inset-right,0px));
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1413; --surface:#141C1B; --sunk:#111817;
+    --fg:#E6EDEB; --muted:#9BABA8; --line:#243130;
+    --arm-a:#56BDB1; --arm-b:#D9A95E;
+    --ph:#C2AE84; --ph-bg:rgba(217,169,94,.12);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1413; --surface:#141C1B; --sunk:#111817;
+  --fg:#E6EDEB; --muted:#9BABA8; --line:#243130;
+  --arm-a:#56BDB1; --arm-b:#D9A95E;
+  --ph:#C2AE84; --ph-bg:rgba(217,169,94,.12);
+  color-scheme:dark;
+}
+
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:var(--body); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+*,*::before,*::after{box-sizing:border-box}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--arm-a);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:1040px;margin-inline:auto;padding-left:var(--gut);padding-right:var(--gut-r)}
+
+/* ---- masthead ---- */
+.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;background:var(--bg);border-bottom:1px solid var(--line)}
+.site .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;padding-block:14px}
+.brand{display:flex;align-items:center;gap:11px;margin-right:auto;min-width:0}
+.brand svg{width:30px;height:30px;flex:none}
+.mark{font-family:var(--display);font-size:1.25rem;letter-spacing:.01em;font-weight:500}
+.mark span{color:var(--muted);font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;display:block;margin-top:2px}
+.site nav{display:flex;flex-wrap:wrap;gap:4px 20px;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+.site nav a{color:var(--muted);text-decoration:none;padding-block:2px}
+.site nav a:hover{color:var(--fg)}
+
+/* ---- hero ---- */
+.hero .wrap{padding-block:clamp(44px,8vw,86px) clamp(36px,6vw,64px)}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,5.4vw,3.5rem);line-height:1.1;margin-block:18px 22px;max-width:19ch}
+.hero h1 em{font-style:italic;color:var(--arm-a)}
+.lede{max-width:62ch;font-size:clamp(1rem,1.6vw,1.12rem);color:var(--muted)}
+.lede strong{color:var(--fg);font-weight:500}
+.lede a{color:var(--fg);font-weight:500;text-decoration:none;border-bottom:1.5px solid var(--arm-b)}
+.lede a.r{border-bottom-color:var(--arm-a)}
+.lede a.t{border-bottom-color:var(--muted)}
+.lede a:hover{background:var(--sunk)}
+.arm[id],.cross[id]{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 80px)}
+
+/* ---- section furniture ---- */
+section{border-top:1px solid var(--line)}
+section > .wrap{padding-block:clamp(40px,6vw,72px)}
+.sec-head{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin-bottom:30px}
+.sec-head h2{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,3vw,2rem)}
+.sec-head .note{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* ---- research arms ---- */
+.arms{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.arm{min-width:0;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--rail);padding:26px 24px 28px;display:flex;flex-direction:column;gap:14px}
+.arm.a{--rail:var(--arm-a)}
+.arm.b{--rail:var(--arm-b)}
+.arm .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rail)}
+.arm h3{font-family:var(--display);font-weight:500;font-size:1.45rem;line-height:1.25}
+.arm p{color:var(--muted);max-width:46ch}
+.arm svg{width:100%;height:auto;max-width:100%;margin-top:4px}
+.arm svg text{font-family:var(--mono);font-size:8px}
+.pi{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline;padding:20px 22px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--arm-a);margin-bottom:30px;min-width:0}
+.pi .name{font-weight:500}
+.pi .role{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-left:auto}
+.arm .keys{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.arm .keys li{list-style:none;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:var(--sunk)}
+.arm .pubs{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.arm .pubs li{font-size:.86rem;line-height:1.45;min-width:0}
+.arm .pubs .t{display:block;color:var(--fg)}
+.arm .pubs .m{font-family:var(--mono);font-size:.71rem;color:var(--muted)}
+.arm .pubs a{color:var(--rail);text-decoration:none;border-bottom:1px solid var(--line)}
+.pubs-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:16px}
+.feed{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);padding:24px}
+.feed p{color:var(--muted);max-width:52ch;min-width:0}
+.feed .btn{font-family:var(--mono);font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--fg);padding:11px 18px;text-decoration:none;white-space:nowrap}
+.feed .btn:hover{background:var(--fg);color:var(--bg)}
+.shared{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);max-width:68ch;font-size:.95rem}
+.shared b{color:var(--fg);font-weight:500}
+
+/* cross-cutting translational angle — spans both arms */
+.cross{--rail:var(--fg);margin-top:24px;background:var(--surface);border:1px solid var(--line);
+  border-top:3px solid transparent;
+  border-image:linear-gradient(90deg,var(--arm-b) 0 50%,var(--arm-a) 50% 100%) 1;
+  padding:26px 24px 28px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px 34px}
+.cross .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cross h3{font-family:var(--display);font-weight:500;font-size:1.45rem;line-height:1.25;margin-block:8px 12px}
+.cross p{color:var(--muted);max-width:56ch}
+.cross .col{min-width:0}
+.cross .pubs-label{margin-top:0}
+.cross .pubs{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.cross .pubs li{font-size:.86rem;line-height:1.45;min-width:0}
+.cross .pubs .t{display:block;color:var(--fg)}
+.cross .pubs .m{font-family:var(--mono);font-size:.71rem;color:var(--muted)}
+.cross .pubs a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line)}
+.cross .steps{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding:0;list-style:none}
+.cross .steps li{font-family:var(--mono);font-size:.7rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:var(--sunk)}
+@media (max-width:680px){.cross{grid-template-columns:1fr}}
+
+/* ---- people ---- */
+.roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px 36px}
+.roster section{border:0}
+.group-title{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding-bottom:8px;border-bottom:2px solid var(--rail);color:var(--rail)}
+.g-a{--rail:var(--arm-a)} .g-b{--rail:var(--arm-b)} .g-c{--rail:var(--line)}
+.g-c .group-title{color:var(--muted)}
+.roster ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.roster li{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline;padding-block:11px;border-bottom:1px solid var(--line);min-width:0}
+.roster .name{font-weight:500}
+.roster .role{font-size:.84rem;color:var(--muted);margin-left:auto;text-align:right}
+
+/* ---- history ---- */
+.timeline{list-style:none;margin:0;padding:0;max-width:72ch}
+.timeline li{display:grid;grid-template-columns:5.5rem 1fr;gap:4px 22px;padding-block:14px;border-bottom:1px solid var(--line);min-width:0}
+.timeline .yr{font-family:var(--mono);font-size:.84rem;color:var(--arm-a);font-variant-numeric:tabular-nums;padding-top:3px}
+.timeline .ev{min-width:0;color:var(--fg)}
+.timeline .ev small{display:block;color:var(--muted);font-size:.88rem;margin-top:2px}
+@media (max-width:460px){.timeline li{grid-template-columns:1fr}}
+
+/* ---- funding ---- */
+.fund-group{max-width:78ch}
+.fund-group + .fund-group{margin-top:34px}
+.fund-group > h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.funding{list-style:none;margin:0;padding:0;max-width:78ch}
+.funding li{display:grid;grid-template-columns:1fr auto;gap:2px 20px;padding-block:14px;border-bottom:1px solid var(--line);min-width:0;align-items:baseline}
+.funding .funder{font-weight:500}
+.funding .scheme{grid-column:1;color:var(--muted);font-size:.9rem}
+.funding .period{font-family:var(--mono);font-size:.8rem;color:var(--muted);grid-row:1;grid-column:2;font-variant-numeric:tabular-nums}
+@media (max-width:460px){.funding li{grid-template-columns:1fr}.funding .period{grid-row:auto;grid-column:1}}
+
+/* ---- contact ---- */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+.contact-grid div{min-width:0}
+.contact-grid h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:400}
+.contact-grid p{line-height:1.7}
+.addr{font-style:normal}
+.copy{font-family:var(--mono);font-size:.82rem;word-break:break-all}
+
+footer{border-top:1px solid var(--line);background:var(--sunk)}
+footer .wrap{padding-block:26px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:.82rem;color:var(--muted)}
+footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* ---- placeholders ---- */
+.ph{color:var(--ph);background:var(--ph-bg);border-bottom:1px dotted currentColor;padding:0 .18em;border-radius:2px}
+.ph-note{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--ph);background:var(--ph-bg);border:1px dashed currentColor;border-radius:3px;padding:6px 10px;display:inline-block;margin-top:18px}
+
+@media (prefers-reduced-motion:no-preference){
+  .site nav a,footer a{transition:color .15s ease}
+}
+</style>
+</head>
+<body>
+
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 64 64" role="img" aria-label="The Behrendt Lab mark: a row of uneven bars with one hit rising above them">
+        <path d="M5 50 H59" stroke="var(--line)" stroke-width="2.4" fill="none"></path>
+        <g fill="var(--arm-a)" opacity=".4">
+          <rect x="6" y="41" width="4" height="9"></rect>
+          <rect x="13" y="36" width="4" height="14"></rect>
+          <rect x="20" y="43" width="4" height="7"></rect>
+          <rect x="27" y="38" width="4" height="12"></rect>
+          <rect x="41" y="34" width="4" height="16"></rect>
+          <rect x="48" y="42" width="4" height="8"></rect>
+          <rect x="55" y="37" width="4" height="13"></rect>
+        </g>
+        <rect x="34" y="13" width="4" height="37" fill="var(--arm-a)"></rect>
+        <circle cx="36" cy="11" r="3.8" fill="var(--arm-a)"></circle>
+      </svg>
+      <div class="mark">The Behrendt Lab<span>Nucleic Acid Immunity &amp; Genome Defense · Bonn</span></div>
+    </div>
+    <nav aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#people">People</a>
+      <a href="#history">History</a>
+      <a href="#funding">Funding</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="border-top:0">
+    <div class="wrap">
+      <p class="eyebrow">Innate nucleic acid sensing</p>
+      <h1>How a cell <em>reacts</em> to nucleic acids.</h1>
+      <p class="lede">Every cell carries DNA and RNA that the immune system can read as danger. What follows that reading is our subject: a sustained interferon response, inflammation, a cell committed to a different fate, a genome full of mobile elements held quiet or let loose. We work on both ends of it — <a href="#arm-interferon">type I interferon–driven inflammation</a> and <a class="r" href="#arm-retroelements">the fundamental biology of retroelement defense</a> — in primary human cells and in mouse models, and we carry both toward <a class="t" href="#therapeutics">therapeutics</a>.</p>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Research</h2>
+        <span class="note">Two arms, one question</span>
+      </div>
+
+      <div class="arms">
+        <article class="arm b" id="arm-interferon">
+          <span class="tag">Arm 01 — Immunopathology</span>
+          <h3>Type I interferon–driven inflammation</h3>
+          <svg viewBox="0 0 320 44" role="img" aria-label="Schematic trace: a low tonic interferon baseline followed by a sustained amplified response">
+            <path d="M4 36 h300" stroke="var(--line)" stroke-width="1"></path>
+            <path d="M6 33 q10 -3 20 0 t20 0 t20 0 t20 -1 t20 1" fill="none" stroke="var(--arm-b)" stroke-width="1.6" opacity=".5"></path>
+            <path d="M126 33 c18 0 24 -20 42 -21 c26 -1 20 14 44 14 c22 0 24 -7 44 -7 c18 0 28 4 42 4" fill="none" stroke="var(--arm-b)" stroke-width="1.8"></path>
+            <path d="M126 6 v32" stroke="var(--arm-b)" stroke-width="1" stroke-dasharray="2 3" opacity=".6"></path>
+            <text x="6" y="12" fill="var(--muted)" font-size="7" font-family="var(--mono)">tonic</text>
+            <text x="232" y="13" fill="var(--muted)" font-size="7" font-family="var(--mono)">sustained response</text>
+          </svg>
+          <p>A persistent interferon response reshapes the cells that live through it, and it does so through hundreds of interferon-stimulated genes whose individual functions are largely unknown. We work through that space gene by gene — in primary human cells and in mouse models — to understand how the response turns into immunopathology, and to identify the nodes within it that can be drugged.</p>
+          <ul class="keys">
+            <li>Interferon signature</li><li>Autoinflammation</li><li>Cell fate</li><li>Mouse models</li>
+          </ul>
+          <p class="pubs-label">Selected publications</p>
+          <ul class="pubs">
+            <li data-pmid="42392131"><span class="t">Forbes D, Jorgacevic I, et al. — Interferon-α as a precision medicine tool in Sjögren's disease</span><span class="m">Lancet Rheumatol 2026</span> · <a class="m" href="https://pubmed.ncbi.nlm.nih.gov/42392131/" target="_blank" rel="noopener">PubMed</a></li>
+            <li data-pmid="36346347"><span class="t">Schumann T, Costas Ramon S, et al. — Deficiency for SAMHD1 activates MDA5 in a cGAS/STING-dependent manner</span><span class="m">J Exp Med 2023</span> · <a class="m" href="https://pubmed.ncbi.nlm.nih.gov/36346347/" target="_blank" rel="noopener">PubMed</a></li>
+          </ul>
+        </article>
+
+        <article class="arm a" id="arm-retroelements">
+          <span class="tag">Arm 02 — Fundamental biology</span>
+          <h3>Retroelement defense</h3>
+          <svg viewBox="0 0 340 280" role="img" aria-label="Graphical abstract: retroelements occupy roughly half the human genome, with LINE-1 at about 17 percent and Alu at about 11 percent, against protein-coding exons at about 1.5 percent. A LINE-1 is transcribed in the nucleus, translated into ORF1p and ORF2p in the cytoplasm, assembles into a ribonucleoprotein and returns to the nucleus to insert a new copy; Alu elements hijack ORF2p for the same journey. When control over this cycle is lost it contributes to inflammation, aging and cancer; when the cycle is held in control it supports immune regulation and genome evolution.">
+            <defs>
+              <marker id="l1arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0 0 L8 4 L0 8 z" fill="var(--arm-a)"></path>
+              </marker>
+            </defs>
+
+            <!-- genome occupancy -->
+            <text x="4" y="9" fill="var(--muted)">share of the human genome</text>
+            <rect x="4" y="14" width="56" height="12" fill="var(--arm-a)"></rect>
+            <rect x="60" y="14" width="37" height="12" fill="var(--arm-a)" opacity=".55"></rect>
+            <rect x="97" y="14" width="56" height="12" fill="var(--arm-a)" opacity=".25"></rect>
+            <rect x="153" y="14" width="178" height="12" fill="var(--sunk)" stroke="var(--line)" stroke-width="1"></rect>
+            <rect x="331" y="14" width="5" height="12" fill="var(--fg)"></rect>
+            <text x="4" y="35" fill="var(--fg)" font-size="7">LINE-1 17%</text>
+            <text x="62" y="35" fill="var(--fg)" font-size="7">Alu 11%</text>
+            <text x="99" y="35" fill="var(--muted)" font-size="7">other repeats</text>
+            <text x="336" y="35" fill="var(--muted)" font-size="7" text-anchor="end">exons 1.5%</text>
+
+            <!-- compartments -->
+            <rect x="4" y="54" width="148" height="120" rx="7" fill="none" stroke="var(--line)" stroke-width="1"></rect>
+            <rect x="160" y="54" width="176" height="120" rx="7" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"></rect>
+            <text x="11" y="66" fill="var(--muted)" font-size="7">NUCLEUS</text>
+            <text x="167" y="66" fill="var(--muted)" font-size="7">CYTOPLASM</text>
+
+            <!-- L1 element -->
+            <text x="11" y="79" fill="var(--muted)" font-size="7">LINE-1</text>
+            <rect x="11" y="83" width="20" height="9" fill="none" stroke="var(--arm-a)" stroke-width="1.2"></rect>
+            <rect x="31" y="83" width="34" height="9" fill="var(--arm-a)" opacity=".3"></rect>
+            <rect x="65" y="83" width="50" height="9" fill="var(--arm-a)" opacity=".5"></rect>
+
+            <!-- Alu element -->
+            <text x="11" y="107" fill="var(--muted)" font-size="7">Alu</text>
+            <rect x="11" y="111" width="26" height="9" fill="var(--arm-a)" opacity=".55"></rect>
+            <text x="11" y="128" fill="var(--muted)" font-size="7">hijacks ORF2p</text>
+
+            <!-- genomic DNA with new insertion -->
+            <text x="11" y="149" fill="var(--muted)" font-size="7">new insertion</text>
+            <path d="M11 160 H140" stroke="var(--line)" stroke-width="2" fill="none"></path>
+            <rect x="66" y="155" width="16" height="10" fill="var(--arm-a)"></rect>
+
+            <!-- transcription -->
+            <path d="M118 88 H194" stroke="var(--arm-a)" stroke-width="1.4" fill="none" marker-end="url(#l1arrow)"></path>
+            <text x="124" y="84" fill="var(--muted)" font-size="7">transcription</text>
+
+            <!-- cytoplasmic steps -->
+            <text x="200" y="91" fill="var(--fg)" font-size="8">L1 mRNA</text>
+            <path d="M210 96 V110" stroke="var(--arm-a)" stroke-width="1.4" fill="none" marker-end="url(#l1arrow)"></path>
+            <text x="216" y="107" fill="var(--muted)" font-size="7">translation</text>
+            <text x="200" y="122" fill="var(--fg)" font-size="8">ORF1p + ORF2p</text>
+            <path d="M210 127 V141" stroke="var(--arm-a)" stroke-width="1.4" fill="none" marker-end="url(#l1arrow)"></path>
+            <text x="200" y="153" fill="var(--fg)" font-size="8">RNP</text>
+
+            <!-- return and insertion -->
+            <path d="M196 160 H92" stroke="var(--arm-a)" stroke-width="1.4" fill="none" marker-end="url(#l1arrow)"></path>
+            <text x="100" y="171" fill="var(--muted)" font-size="7">retrotransposition</text>
+
+            <!-- Alu hijack -->
+            <path d="M39 116 C 96 118, 130 146, 194 152" stroke="var(--arm-a)" stroke-width="1.2" stroke-dasharray="3 2" fill="none" marker-end="url(#l1arrow)"></path>
+
+            <!-- consequences -->
+            <path d="M250 176 V190" stroke="var(--arm-a)" stroke-width="1.4" fill="none" marker-end="url(#l1arrow)"></path>
+            <text x="4" y="196" fill="var(--muted)" font-size="7">when control is lost</text>
+            <rect x="4" y="204" width="86" height="20" rx="10" fill="var(--sunk)" stroke="var(--arm-a)" stroke-width="1"></rect>
+            <text x="47" y="217" fill="var(--fg)" font-size="8" text-anchor="middle">inflammation</text>
+            <rect x="96" y="204" width="48" height="20" rx="10" fill="var(--sunk)" stroke="var(--arm-a)" stroke-width="1"></rect>
+            <text x="120" y="217" fill="var(--fg)" font-size="8" text-anchor="middle">aging</text>
+            <rect x="150" y="204" width="58" height="20" rx="10" fill="var(--sunk)" stroke="var(--arm-a)" stroke-width="1"></rect>
+            <text x="179" y="217" fill="var(--fg)" font-size="8" text-anchor="middle">cancer</text>
+
+            <text x="4" y="244" fill="var(--muted)" font-size="7">when held in control</text>
+            <rect x="4" y="252" width="110" height="20" rx="10" fill="var(--arm-a)" fill-opacity=".14" stroke="var(--arm-a)" stroke-width="1" stroke-dasharray="3 2"></rect>
+            <text x="59" y="265" fill="var(--fg)" font-size="8" text-anchor="middle">immune regulation</text>
+            <rect x="120" y="252" width="104" height="20" rx="10" fill="var(--arm-a)" fill-opacity=".14" stroke="var(--arm-a)" stroke-width="1" stroke-dasharray="3 2"></rect>
+            <text x="172" y="265" fill="var(--fg)" font-size="8" text-anchor="middle">genome evolution</text>
+          </svg>
+          <p>LINE-1 and related retroelements make up a large fraction of the human genome and never stop being transcribed entirely. We study how cells hold that activity in check, what escapes, and how the products are recognised by the nucleic acid sensing machinery.</p>
+          <ul class="keys">
+            <li>LINE-1</li><li>cGAS–STING</li><li>Transposon control</li><li>Genome stability</li>
+          </ul>
+          <p class="pubs-label">Selected publications</p>
+          <ul class="pubs">
+            <li data-pmid="36346347"><span class="t">Schumann T, Costas Ramon S, et al. — Deficiency for SAMHD1 activates MDA5 in a cGAS/STING-dependent manner</span><span class="m">J Exp Med 2023</span> · <a class="m" href="https://pubmed.ncbi.nlm.nih.gov/36346347/" target="_blank" rel="noopener">PubMed</a></li>
+            <li data-pmid="28835460"><span class="t">Achleitner M, Kleefisch M, et al. — Lack of Trex1 causes systemic autoimmunity despite the presence of antiretroviral drugs</span><span class="m">J Immunol 2017</span> · <a class="m" href="https://pubmed.ncbi.nlm.nih.gov/28835460/" target="_blank" rel="noopener">PubMed</a></li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="shared"><b>The shared denominator is sensing.</b> Both arms ask the same question from opposite ends — one from what a sustained response leaves behind, the other from the nucleic acid that sets it off. Methods, mouse lines and people move between them.</p>
+
+      <section class="cross" id="therapeutics">
+        <div class="col">
+          <span class="tag">Across both arms</span>
+          <h3>Therapeutics</h3>
+          <p>Informed by our two research arms, we actively develop immune therapeutics. We identify novel targets and compounds, and test their efficacy in tailored cell culture models, in vivo models and small investigator-initiated clinical trials.</p>
+          <p style="margin-top:12px">This work runs with academic groups and with industry partners, for whom we have been reliable collaborators since 2018.</p>
+          <ul class="steps">
+            <li>Target identification</li><li>Compound screening</li><li>Cell culture models</li><li>In vivo models</li><li>Investigator-initiated trials</li>
+          </ul>
+        </div>
+        <div class="col">
+          <p class="pubs-label">Selected publications</p>
+          <ul class="pubs">
+            <li data-pmid="33813142"><span class="t">Prabakaran T, Troldborg A, et al. — A STING antagonist modulating the interaction with STIM1 blocks ER-to-Golgi trafficking and inhibits lupus pathology</span><span class="m">EBioMedicine 2021</span> · <a class="m" href="https://pubmed.ncbi.nlm.nih.gov/33813142/" target="_blank" rel="noopener">PubMed</a></li>
+            <li data-pmid="29973723"><span class="t">Haag SM, Gulen MF, et al. — Targeting STING with covalent small-molecule inhibitors</span><span class="m">Nature 2018</span> · <a class="m" href="https://pubmed.ncbi.nlm.nih.gov/29973723/" target="_blank" rel="noopener">PubMed</a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Publications</h2>
+        <span class="note">Complete list, always current</span>
+      </div>
+      <div class="feed">
+        <p>The full bibliography is maintained on PubMed and updates itself as papers appear. The papers named under each research arm above are a selection; everything else is one click away.</p>
+        <a class="btn" href="https://www.ncbi.nlm.nih.gov/myncbi/rayk.behrendt.1/bibliography/public/" target="_blank" rel="noopener">Full bibliography on PubMed</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="people">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>People</h2>
+        <span class="note">Two arms, one group</span>
+      </div>
+      <div class="pi">
+        <span class="name">Prof. Dr. rer. nat. habil. Rayk Behrendt</span>
+        <span class="role">Group leader</span>
+      </div>
+      <div class="roster">
+        <section class="g-b">
+          <h3 class="group-title">Interferon-driven inflammation</h3>
+          <ul>
+            <li><span class="name">Dr. Anne v. Mäßenhausen</span><span class="role">Senior postdoc</span></li>
+            <li><span class="name">Dr. Ivana Jorgacevic</span><span class="role">Postdoc</span></li>
+            <li><span class="name">Aref Mayo, M.Sc.</span><span class="role">PhD student</span></li>
+            <li><span class="name">Melanie Hega, M.Sc.</span><span class="role">PhD student</span></li>
+            <li><span class="name">Mustafa Öztürk</span><span class="role">Technician</span></li>
+          </ul>
+        </section>
+        <section class="g-a">
+          <h3 class="group-title">Retroelement defense</h3>
+          <ul>
+            <li><span class="name">Dr. Lina Muhandes</span><span class="role">Postdoc</span></li>
+            <li><span class="name">Dr. De Xi</span><span class="role">Postdoc</span></li>
+            <li><span class="name">Kilian Leon Kleemann, M.Sc.</span><span class="role">Bioinformatics</span></li>
+            <li><span class="name">Jonas Dauster, M.Sc.</span><span class="role">PhD student</span></li>
+            <li><span class="name">Patrick Müller</span><span class="role">Technician</span></li>
+          </ul>
+        </section>
+        <section class="g-c">
+          <h3 class="group-title">Alumni</h3>
+          <ul>
+            <li><span class="name">Dr. Emilija Marinkovic</span><span class="role">Senior postdoc, Roers lab</span></li>
+            <li><span class="name">Dr. Santiago Costas-Ramon</span><span class="role">BioNTech</span></li>
+            <li><span class="name">Lukas Sydow</span><span class="role">Miltenyi Biotec</span></li>
+          </ul>
+        </section>
+      </div>
+      <span class="ph-note">Dotted fields are placeholders — send me the names and I'll set them.</span>
+    </div>
+  </section>
+
+  <section id="history">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>History</h2>
+        <span class="note">How the group got here</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="yr">2026</span><span class="ev">Interferon-driven immunopathology<small>Major publication with the Hunt lab in Edinburgh, in The Lancet Rheumatology.</small></span></li>
+        <li><span class="yr">2025</span><span class="ev">ImmunoSensation³<small>Main applicant of the ImmunoSensation³ Cluster of Excellence.</small></span></li>
+        <li><span class="yr">2024</span><span class="ev">Tenured professorship<small>Premature promotion to tenured Professor (W2) for Nucleic Acid Immunity and Genome Defense, University and University Hospital Bonn.</small></span></li>
+        <li><span class="yr">2023</span><span class="ev">First major paper from the Bonn lab<small>Innate immune priming in autoinflammation, in the Journal of Experimental Medicine.</small></span></li>
+        <li><span class="yr">2022</span><span class="ev">ERC Consolidator Grant awarded<small>“EndoRPHIm” starts the retroelement arm of the group.</small></span></li>
+        <li><span class="yr">2022</span><span class="ev">Move to Bonn<small>Tenure-track professorship (W2) for Nucleic Acid Immunity at the University and University Hospital Bonn.</small></span></li>
+        <li><span class="yr">2021</span><span class="ev">A new class of STING antagonist<small>Developed with the Paludan lab.</small></span></li>
+        <li><span class="yr">2020</span><span class="ev">Habilitation<small>“Molecular mechanisms and therapy of nucleic acid-driven inflammation”; Venia Legendi, Medical Faculty, TU Dresden.</small></span></li>
+        <li><span class="yr">2018</span><span class="ev">First STING antagonist<small>In vivo work behind the discovery of the first STING antagonist, with the Ablasser lab in Lausanne.</small></span></li>
+        <li><span class="yr">2017</span><span class="ev">Group established<small>Institute for Immunology, TU Dresden. Aicardi–Goutières Syndrome Research Award in the same year.</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="funding">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Funding</h2>
+        <span class="note">Current and past support</span>
+      </div>
+      <div class="fund-group">
+        <h3>Public funding</h3>
+        <ul class="funding">
+          <li><span class="funder">Deutsche Forschungsgemeinschaft</span><span class="scheme">ImmunoSensation³ Cluster of Excellence</span><span class="period">2026–2032</span></li>
+          <li><span class="funder">Deutsche Forschungsgemeinschaft</span><span class="scheme">Einzelantrag</span><span class="period">2027–2030</span></li>
+          <li><span class="funder">European Research Council</span><span class="scheme">Consolidator Grant — “EndoRPHIm”</span><span class="period">2023–2028</span></li>
+          <li><span class="funder">Deutsche Forschungsgemeinschaft</span><span class="scheme">Einzelantrag</span><span class="period">2022–2026</span></li>
+          <li><span class="funder">Deutsche Forschungsgemeinschaft</span><span class="scheme">SFB/TRR 237</span><span class="period">2018–2030</span></li>
+          <li><span class="funder">Deutsche Forschungsgemeinschaft</span><span class="scheme">Einzelantrag</span><span class="period">2017–2021</span></li>
+          <li><span class="funder">Else Kröner-Fresenius-Stiftung</span><span class="scheme ph">Programme</span><span class="period">2016–2019</span></li>
+          <li><span class="funder">Fritz Thyssen Stiftung</span><span class="scheme ph">Programme</span><span class="period">2013–2015</span></li>
+        </ul>
+      </div>
+
+      <div class="fund-group">
+        <h3>Industry funding</h3>
+        <ul class="funding">
+          <li><span class="funder">Industry partners</span><span class="scheme">Collaborative drug development projects</span><span class="period">since 2018</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Contact</h2>
+        <span class="note">Open to enquiries</span>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <h3>Address</h3>
+          <address class="addr">Department of Nucleic Acid Immunity &amp; Genome Defense<br>Institute for Clinical Chemistry and Clinical Pharmacology<br>University Hospital Bonn<br>Venusberg-Campus 1, Building 12<br>53127 Bonn, Germany</address>
+        </div>
+        <div>
+          <h3>Email</h3>
+          <p class="copy">behrendt@uni-bonn.de</p>
+        </div>
+        <div>
+          <h3>Joining the group</h3>
+          <p>We take PhD students and postdocs with a background in immunology, virology, molecular biology or computational genomics. Write with a CV and a short note on what you want to work on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>The Behrendt Lab · University Hospital Bonn</span>
+    <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
